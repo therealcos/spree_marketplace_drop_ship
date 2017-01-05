@@ -4,11 +4,7 @@
 <td class="sku"><%= product.sku rescue '' %></td>
 <td class="image"><%= mini_image product, class: "thumbnail" %></td>
 <td>
-  <% if try_spree_current_user && try_spree_current_user.supplier? %>
-    <%= link_to product.try(:name), stock_admin_product_path(product)%>
-  <% else %>
-    <%= link_to product.try(:name), edit_admin_product_path(product) %>
-  <% end %>
+  <%= link_to product.try(:name), edit_admin_product_path(product) %>
 </td>
 <td><%= product.display_price.to_html rescue '' %></td>
 <td class="actions" data-hook="admin_products_index_row_actions">
