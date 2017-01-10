@@ -2,6 +2,8 @@ Spree::Product.class_eval do
 
   has_many :suppliers, through: :master
 
+  self.whitelisted_ransackable_attributes = %w[description name slug discontinue_on available_on]
+
   def add_supplier!(supplier_or_id)
     supplier = supplier_or_id.is_a?(Spree::Supplier) ? supplier_or_id : Spree::Supplier.find(supplier_or_id)
     populate_for_supplier! supplier if supplier
