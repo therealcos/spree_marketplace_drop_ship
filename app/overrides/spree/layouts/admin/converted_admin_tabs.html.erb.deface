@@ -1,6 +1,11 @@
 <!-- insert_bottom "div#main-sidebar" -->
 
 <%# Add sidebar's items for supplier %>
+<% if try_spree_current_user.try(:supplier?) %>
+<ul class="nav nav-sidebar">
+  <%= tab :products, label: Spree.t(:products), match_path: '/products', icon: 'th-large' %>
+</ul>
+<% end %>
 <% if can? :index, Spree::Supplier %>
 <ul class="nav nav-sidebar">
   <%= tab :suppliers, label: Spree.t(:suppliers), match_path: '/suppliers', icon: 'home' %>
