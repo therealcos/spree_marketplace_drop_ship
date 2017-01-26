@@ -9,6 +9,9 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
   end
 
   def new
+    if try_spree_current_user.try(:supplier?)
+      redirect_to spree.edit_admin_supplier_url(spree_current_user.supplier_id)
+    end
     @object = Spree::Supplier.new(address_attributes: {country_id: Spree::Address.default.country_id})
   end
 
