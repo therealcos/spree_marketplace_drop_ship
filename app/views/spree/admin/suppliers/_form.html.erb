@@ -50,6 +50,26 @@
         <% end %>
         </div>
       <% end %>
+
+
+
+
+
+      <%= form.field_container :profile_picture, class: ['form-group'] do %>
+        <div data-hook="admin_image_form_fields" class="row">
+          <div class="col-md-6">
+            <div data-hook="file" class="form-group">
+              <%= f.label :attachment, Spree.t(:filename) %>
+              <%= f.file_field :attachment %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+
+
+
+
     <% end %>
     <%# This moved to _edit(new)_resource_links.html.erb %>
     <!--<div class='center'>-->
