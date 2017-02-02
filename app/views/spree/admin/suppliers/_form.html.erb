@@ -11,10 +11,6 @@
 <div data-hook="supplier_details_wrapper" class="col-md-6">
   <fieldset class="no-border-bottom">
     <legend align="center" ><%= Spree.t('supplier_details') %></legend>
-    <%= form.field_container :profile_picture, class: ['form-group'] do %>
-      <%= f.label :attachment, Spree.t(:filename) %>
-      <%= f.file_field :attachment %>
-    <% end %>
     <%= form.field_container :name, class: ['form-group'] do %>
       <%= form.label :name, Spree::Supplier.human_attribute_name(:name) %>:<br />
       <%= form.text_field :name, :class => 'form-control' %>
