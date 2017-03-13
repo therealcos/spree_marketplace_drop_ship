@@ -2,8 +2,6 @@ Spree::Product.class_eval do
 
   has_many :suppliers, through: :master
 
-  validate :image_is_square
-
   self.whitelisted_ransackable_attributes = %w[description name slug discontinue_on available_on]
 
   def add_supplier!(supplier_or_id)
@@ -32,11 +30,5 @@ Spree::Product.class_eval do
       end
     end
   end
-
-  def image_is_square
-    dimensions = Paperclip::Geometry.from_file(image.queued_for_write[:original].path)
-
-    errors.add(:image, "Image must be square.") unless dimensions.width == dimensions.height
-  end
-
+  
 end
