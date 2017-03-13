@@ -48,9 +48,6 @@
   </div>
 <% end %>
 
-<%# This is a new paginate! %>
-<%= render :partial => 'spree/admin/shared/index_table_options', :locals => { :collection => @shipments } %>
-
 <% unless @shipments.empty? %>
   <table class="table" id="listing_shipments" data-hook>
     <thead>
@@ -85,11 +82,7 @@
     </tbody>
   </table>
 <% else %>
-    <%# New alert 'Not Found' with i18n %>
     <div class="alert alert-info no-objects-found">
       <%= Spree.t(:no_resource_found, resource: Spree::Shipment.model_name.human(count: :many)) %>
     </div>
 <% end %>
-
-<%# This is a new paginate! %>
-<%= render :partial => 'spree/admin/shared/index_table_options', :locals => { :collection => @shipments } %>
