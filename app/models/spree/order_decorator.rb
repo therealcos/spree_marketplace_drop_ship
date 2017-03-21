@@ -8,11 +8,16 @@ Spree::Order.class_eval do
   # If you want to customize this you could override it as a hook for notifying a supplier with a API request instead.
   def finalize_with_drop_ship!
     finalize_without_drop_ship!
+    puts "DROP 0"
     shipments.each do |shipment|
+    	puts "DROP 1"
       if SpreeDropShip::Config[:send_supplier_email] && shipment.supplier.present?
+        puts "DROP 2"
         begin
+        puts "DROP 3"
           Spree::DropShipOrderMailer.supplier_order(shipment.id).deliver!
         rescue => ex #Errno::ECONNREFUSED => ex
+        	puts "DROP 4"
           puts ex.message
           puts ex.backtrace.join("\n")
           Rails.logger.error ex.message
