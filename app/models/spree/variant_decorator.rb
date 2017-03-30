@@ -5,6 +5,7 @@ module Spree
     has_many :supplier_variants
 
     before_create :populate_for_suppliers
+    after_save :set_sku
 
     private
 
@@ -18,6 +19,13 @@ module Spree
 
     def populate_for_suppliers
       self.suppliers = self.product.suppliers
+    end
+
+    def set_sku
+      unless self.sku.present?
+        self.sku = self.is_master ? product.id : "#{product.id}-#{self.id}"
+        self.save
+      end
     end
 
   end
