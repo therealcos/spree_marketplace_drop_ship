@@ -5,7 +5,8 @@ module Spree
     has_many :supplier_variants
 
     before_create :populate_for_suppliers
-    after_save :set_sku
+    before_create :set_sku
+    after_create :increment_sku_count
 
     private
 
@@ -22,11 +23,17 @@ module Spree
     end
 
     def set_sku
-      unless self.sku.present?
-        self.sku = self.is_master ? product.id : "#{product.id}-#{self.id}"
-        self.save
-      end
+      if self.is_master
+        self.sku = self.product.id
+      else
+        self.sku = "#{self.product.id}-#{self.product.sku_count + 1}"
+      end 
     end
+
+    def increment_sku_count
+      self.product.sku_count += 1
+      self.product.save
+    end 
 
   end
 end
