@@ -29,7 +29,7 @@ module Spree
       if self.is_master
         self.sku = self.product.id
       else
-        self.sku = "#{self.product.id}-#{self.product.sku_count + 1}"
+        self.sku = "#{self.product.id}-#{self.product.sku_count}"
       end 
     end
 
