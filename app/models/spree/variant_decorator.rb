@@ -31,8 +31,8 @@ module Spree
     end
 
     def increment_sku_count
-        self.product.sku_count += 1
-        self.product.save
+      self.product.sku_count += 1
+      self.product.save
     end 
 
   end
