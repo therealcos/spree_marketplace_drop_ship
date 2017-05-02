@@ -3,6 +3,8 @@ Spree::Order.class_eval do
   has_many :stock_locations, through: :shipments
   has_many :suppliers, through: :stock_locations
 
+  before_update :update_last_state
+
   # Once order is finalized we want to notify the suppliers of their drop ship orders.
   # Here we are handling notification by emailing the suppliers.
   # If you want to customize this you could override it as a hook for notifying a supplier with a API request instead.
@@ -23,5 +25,9 @@ Spree::Order.class_eval do
     end
   end
   alias_method_chain :finalize!, :drop_ship
+
+  def update_last_state
+    self.last_state = self.state
+  end
 
 end
