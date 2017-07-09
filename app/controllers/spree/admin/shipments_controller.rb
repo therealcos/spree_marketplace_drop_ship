@@ -11,16 +11,16 @@ module Spree
         # As date params are deleted if @show_only_incomplete, store
         # the original date so we can restore them into the params
         # after the search
-        created_at_gt = params[:q][:created_at_gt]
-        created_at_lt = params[:q][:created_at_lt]
+        # created_at_gt = params[:q][:created_at_gt]
+        # created_at_lt = params[:q][:created_at_lt]
 
-        if !params[:q][:created_at_gt].blank?
-          params[:q][:created_at_gt] = Time.zone.parse(params[:q][:created_at_gt]).beginning_of_day rescue ""
-        end
+        # if !params[:q][:created_at_gt].blank?
+        #   params[:q][:created_at_gt] = Time.zone.parse(params[:q][:created_at_gt]).beginning_of_day rescue ""
+        # end
 
-        if !params[:q][:created_at_lt].blank?
-          params[:q][:created_at_lt] = Time.zone.parse(params[:q][:created_at_lt]).end_of_day rescue ""
-        end
+        # if !params[:q][:created_at_lt].blank?
+        #   params[:q][:created_at_lt] = Time.zone.parse(params[:q][:created_at_lt]).end_of_day rescue ""
+        # end
 
         @search = Spree::Shipment.accessible_by(current_ability, :index).ransack(params[:q])
         @shipments = @search.result.
@@ -28,8 +28,8 @@ module Spree
           per(params[:per_page] || Spree::Config[:orders_per_page])
 
         # Restore dates
-        params[:q][:created_at_gt] = created_at_gt
-        params[:q][:created_at_lt] = created_at_lt
+        # params[:q][:created_at_gt] = created_at_gt
+        # params[:q][:created_at_lt] = created_at_lt
       end
 
       private
