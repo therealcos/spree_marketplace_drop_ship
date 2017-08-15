@@ -43,6 +43,9 @@ class Spree::Supplier < Spree::Base
   # Instance Methods
   scope :active, -> { where(active: true) }
 
+  has_attached_file :profile_picture, dependent: :destroy, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :path => ":rails_root/public/spree/suppliers/:id/:style/:filename", :url => "/spree/suppliers/:id/:style/:filename"
+  validates_attachment :profile_picture, :content_type => { :content_type => /\Aimage\/.*\Z/ }, :size => { :in => 0..500.kilobytes }
+
   def deleted?
     deleted_at.present?
   end
