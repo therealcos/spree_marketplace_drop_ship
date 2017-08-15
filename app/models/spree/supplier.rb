@@ -2,6 +2,8 @@ class Spree::Supplier < Spree::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  require_dependency 'validators/email_validator.rb'
+
   attr_accessor :password, :password_confirmation
 
   #==========================================
