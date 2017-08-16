@@ -2,8 +2,6 @@ class Spree::Supplier < Spree::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  require_dependency 'spree/core/validators/email.rb'
-
   attr_accessor :password, :password_confirmation
 
   #==========================================
@@ -22,9 +20,6 @@ class Spree::Supplier < Spree::Base
   has_many   :supplier_variants
   has_many   :users, class_name: Spree.user_class.to_s
   has_many   :variants, through: :supplier_variants
-
-  has_attached_file :profile_picture, dependent: :destroy, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :path => ":rails_root/public/spree/suppliers/:id/:style/:filename", :url => "/spree/suppliers/:id/:style/:filename"
-  validates_attachment :profile_picture, :content_type => { :content_type => /\Aimage\/.*\Z/ }, :size => { :in => 0..500.kilobytes }
 
   #==========================================
   # Validations
