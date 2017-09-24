@@ -77,7 +77,7 @@ en:
         hello: "Hello %{name},"
         logging_into_your_account: logging into your account.
         manage_your_account: You may now manage your profile and inventory by
-        subject: 'Thank you for signing up.  Please verify your information.'
+        subject: 'Welcome to Pio Pet!'
         thank_you_again: "Thank you again for your business, <b>%{name}</b>"
         thank_you_for_signing_up: Thank you for signing up to be a drop ship supplier.
     supplier_registration:
