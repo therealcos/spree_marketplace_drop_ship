@@ -36,6 +36,7 @@ class Spree::Supplier < Spree::Base
   after_create :assign_user
   after_create :create_stock_location
   after_create :send_welcome, if: -> { SpreeDropShip::Config[:send_supplier_email] }
+  after_update :update_stock_location
   before_create :set_commission
   before_validation :check_url
 
@@ -94,6 +95,16 @@ class Spree::Supplier < Spree::Base
         # It's important location is always created.  Some apps add validations that shouldn't break this.
         location.save validate: false
       end
+    end
+
+    def update_stock_location
+      location = stock_locations.first
+      location.name = name
+      location.country_id = address.try(:country_id)
+      location.state_id = address.try(:state_id)
+      location.city = address.city
+      location.zipcode = address.zipcode
+      location.save
     end
 
     def send_welcome
