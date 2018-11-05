@@ -39,7 +39,7 @@ en:
     drop_ship_order_mailer:
       supplier_order:
         hello: "Hello %{name},"
-        subject: "%{name} Drop Shipment #%{number}"
+        subject: "%{name} Shipment #%{number}"
         thank_you_again: "Thank you again for your business, <b>%{name}</b>"
     drop_ship_order_number: "Drop Ship Order #%{number}"
     drop_ship_orders: Drop Ship Orders
