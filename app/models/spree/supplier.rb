@@ -88,6 +88,7 @@ class Spree::Supplier < Spree::Base
           active: true,
           country_id: self.address.try(:country_id),
           name: self.name,
+          address1: self.address.try(:address1),
           state_id: self.address.try(:state_id),
           city: self.address.city,
           zipcode: self.address.zipcode
