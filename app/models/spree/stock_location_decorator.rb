@@ -1,5 +1,4 @@
 Spree::StockLocation.class_eval do
-
   belongs_to :supplier, class_name: 'Spree::Supplier'
 
   scope :by_supplier, -> (supplier_id) { where(supplier_id: supplier_id) }
