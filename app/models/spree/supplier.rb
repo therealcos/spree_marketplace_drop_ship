@@ -14,7 +14,7 @@ class Spree::Supplier < Spree::Base
     has_many :ckeditor_pictures
     has_many :ckeditor_attachment_files
   end
-  has_many   :products, through: :variants
+  has_many   :products, through: :variants, dependent: :destroy
   has_many   :shipments, through: :stock_locations
   has_many   :stock_locations
   has_many   :supplier_variants
