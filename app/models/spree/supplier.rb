@@ -105,7 +105,7 @@ class Spree::Supplier < Spree::Base
       location.city = address.city
       location.zipcode = address.zipcode
       puts "saving stock location..."
-      location.save!
+      puts location.save
       puts "name is..."
       puts name
       puts "stock location is..."
