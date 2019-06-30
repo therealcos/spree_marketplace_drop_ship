@@ -19,7 +19,7 @@ class Spree::Supplier < Spree::Base
   has_many   :stock_locations, dependent: :destroy
   has_many   :supplier_variants
   has_many   :users, class_name: Spree.user_class.to_s
-  has_many   :variants, through: :supplier_variants
+  has_many   :variants, through: :supplier_variants, dependent: :destroy
 
   #==========================================
   # Validations
@@ -100,8 +100,6 @@ class Spree::Supplier < Spree::Base
     def update_stock_location
       location = stock_locations.first
       location.name = name
-      puts "updating stock location..."
-      puts location.name
       location.country_id = address.try(:country_id)
       location.state_id = address.try(:state_id)
       location.city = address.city
