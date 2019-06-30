@@ -105,6 +105,10 @@ class Spree::Supplier < Spree::Base
       location.city = address.city
       location.zipcode = address.zipcode
       location.save
+      puts "name is..."
+      puts name
+      puts "stock location is..."
+      puts location
     end
 
     def send_welcome
