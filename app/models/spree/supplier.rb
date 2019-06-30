@@ -86,12 +86,12 @@ class Spree::Supplier < Spree::Base
       if self.stock_locations.empty?
         location = self.stock_locations.build(
           active: true,
-          country_id: self.address.try(:country_id),
           name: self.name,
-          address1: self.address.try(:address1),
-          state_id: self.address.try(:state_id),
+          address1: self.address.address1,
+          state_id: self.address.country_id,
           city: self.address.city,
-          zipcode: self.address.zipcode
+          zipcode: self.address.zipcode,
+          country_id: self.address.country_id
         )
         # It's important location is always created.  Some apps add validations that shouldn't break this.
         location.save validate: false
@@ -101,16 +101,13 @@ class Spree::Supplier < Spree::Base
     def update_stock_location
       location = stock_locations.first
       location.name = name
-      location.country_id = address.try(:country_id)
-      location.state_id = address.try(:state_id)
+      location.address1 = address.address1
       location.city = address.city
+      location.state_id = address.state_id
       location.zipcode = address.zipcode
+      location.country_id = address.country_id
       puts "saving stock location..."
       puts location.save
-      puts "name is..."
-      puts name
-      puts "stock location is..."
-      puts location
     end
 
     def send_welcome
