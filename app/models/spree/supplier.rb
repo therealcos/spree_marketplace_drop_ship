@@ -104,6 +104,7 @@ class Spree::Supplier < Spree::Base
       location.state_id = address.try(:state_id)
       location.city = address.city
       location.zipcode = address.zipcode
+      puts "saving stock location..."
       location.save!
       puts "name is..."
       puts name
